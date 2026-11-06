@@ -17,7 +17,6 @@ void printRoute(int currentVertex, const vector<int>& parent) {
     printRoute(parent[currentVertex], parent);
     cout << idxToChar(currentVertex) << (parent[currentVertex] != -1 ? "" : "");
     if (currentVertex != -1) {
-        // Akan ditangani di fungsi utama untuk format panah
     }
 }
 
@@ -63,10 +62,8 @@ void dijkstra(const vector<vector<int>>& graph, int src, vector<int>& dist, vect
 }
 
 int main() {
-    // Representasi matriks ketetanggaan berbobot berdasarkan soal
     vector<vector<int>> graph(NUM_LOCATIONS, vector<int>(NUM_LOCATIONS, 0));
     
-    // Memasukkan bobot sesuai detail tugas
     graph[charToIdx('A')][charToIdx('B')] = 4; graph[charToIdx('B')][charToIdx('A')] = 4;
     graph[charToIdx('A')][charToIdx('C')] = 2; graph[charToIdx('C')][charToIdx('A')] = 2;
     graph[charToIdx('B')][charToIdx('C')] = 1; graph[charToIdx('C')][charToIdx('B')] = 1;
@@ -80,7 +77,7 @@ int main() {
 
     cout << "=== SISTEM NAVIGASI KOTA (DIJKSTRA) ===\n";
     
-    // Bagian 1: Rute Terpendek dari Lokasi A ke Semua Lokasi Lain
+    // Rute Terpendek dari Lokasi A ke Semua Lokasi Lain
     vector<int> distA, parentA;
     dijkstra(graph, charToIdx('A'), distA, parentA);
     
@@ -97,7 +94,7 @@ int main() {
         cout << endl;
     }
     
-    // Bagian 2: Rekomendasi Rute Berdasarkan Input Pengguna
+    // Rekomendasi Rute Berdasarkan Input Pengguna
     cout << "\n[2] Rekomendasi Rute Kustom\n";
     char start, target;
     cout << "Masukkan Lokasi Asal (A-F): ";
@@ -119,10 +116,10 @@ int main() {
             cout << "Tidak ada rute yang menghubungkan lokasi " << start << " dan " << target << ".\n";
         } else {
             cout << "\n--- REKOMENDASI RUTE TERCEPAT ---\n";
-            cout << "Asal       : " << start << endl;
-            cout << "Tujuan     : " << target << endl;
-            cout << "Total Jarak: " << customDist[targetIdx] << " km\n";
-            cout << "Rute       : ";
+            cout << "Asal : " << start << endl;
+            cout << "Tujuan : " << target << endl;
+            cout << "Total Jarak : " << customDist[targetIdx] << " km\n";
+            cout << "Rute : ";
             vector<int> route = getRoute(targetIdx, customParent);
             for (size_t j = 0; j < route.size(); j++) {
                 cout << idxToChar(route[j]);
